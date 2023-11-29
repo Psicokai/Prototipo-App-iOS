@@ -1,0 +1,100 @@
+[
+    {
+        "id": "c61e32cbc844da79",
+        "type": "tab",
+        "label": "petFinderPost",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ad76422860548ec5",
+        "type": "http in",
+        "z": "c61e32cbc844da79",
+        "name": "",
+        "url": "/petfinderPOST",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "bd84de208ab2416b"
+            ]
+        ]
+    },
+    {
+        "id": "0f9a91d7ce1ecb37",
+        "type": "debug",
+        "z": "c61e32cbc844da79",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cc05944254cfe557",
+        "type": "http response",
+        "z": "c61e32cbc844da79",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e76d80c472834884",
+        "type": "cloudantplus out",
+        "z": "c61e32cbc844da79",
+        "name": "",
+        "cloudant": "f319d7a5ab3ff750",
+        "database": "petfinderdb",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "cc05944254cfe557",
+                "0f9a91d7ce1ecb37"
+            ]
+        ]
+    },
+    {
+        "id": "bd84de208ab2416b",
+        "type": "split",
+        "z": "c61e32cbc844da79",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "e76d80c472834884"
+            ]
+        ]
+    },
+    {
+        "id": "f319d7a5ab3ff750",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-16d9pc9gjneh8on884qeslyhcih917bgxgtclub94xtt:02d33f7efed8fbdd9ebad5e26f041d13@8472bb0f-4f34-4675-bd25-3cf7a52343d1-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
+    }
+]
